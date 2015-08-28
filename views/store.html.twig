@@ -31,6 +31,12 @@
                     <button type="submit" class="btn btn-info">Change Store Name</button>
             </form>
             
+            <form action="/delete_store/{{ store.getId }}" method="post" class="action_buttons">
+                <input name="_method" type="hidden" value="delete">
+                <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">                
+                <button type="submit" class="btn btn-danger">Remove Store</button>
+            </form>
+            
             <form action="/form_brand" class="action_buttons">
                     <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
                     <button type="submit" class="btn btn-info">Add New Brand</button>

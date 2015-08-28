@@ -4,9 +4,14 @@
     require_once __DIR__."/../src/Store.php";
     require_once __DIR__."/../src/Brand.php";
 	
+    // This enables debug for silex to 
+    // to display more information about
+    // any errors
 	use Symfony\Component\Debug\Debug;
     Debug::enable();
 	
+    // This enables the use of patch and delete
+    // on your silex routes
 	use Symfony\Component\HttpFoundation\Request;
     Request::enableHttpMethodParameterOverride();
 
@@ -66,6 +71,15 @@
         $store = Store::find($id);
         
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $store->getBrands(), 'form_check' => false, 'store_update' => false));
+    });
+    
+    $app->delete("/delete_store/{id}", function($id) use ($app) {
+        
+        $id = $_POST['store_id'];
+        $store = Store::find($id);
+        $store->delete();
+
+        return $app['twig']->render('index.html.twig', array('stores' => Store::getAll(), 'form_check' => false));
     });
     
     $app->get("/form_brand", function() use ($app) {
