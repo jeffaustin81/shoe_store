@@ -7,24 +7,7 @@
     <body>
         <div class="container">
 
-            <h1>{{ store.getName }}</h1>
-
-            {% if brands is not empty %}
-                <h4>List of brands:</h4>
-                    {% for brand in brands %}
-                        <div class="brand">
-                        <li><h5><strong>{{ brand.getName }}</a></strong></h5></li>
-                        </div>
-                        <form action="/delete_brand/{{ brand.getId }}" method="post">
-                        <input name="_method" type="hidden" value="delete">
-                        <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
-                        <input name="brand_id" type="hidden" value="{{ brand.getId }}">
-                        <button type="submit" class="btn btn-danger btn-xs">Remove Brand</button>
-                        </form>
-                    {% endfor %}
-            {% else %}
-                <h3>There are no brands for {{ store.getName }} store yet!</h3>
-            {% endif %}
+            <h1>{{ store.getName }}</h1>            
             
             <form action="/form_store_update" class="action_buttons">
                     <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
@@ -70,6 +53,23 @@
                     </div>
                     <button type="submit" class="btn btn-success">Add Brand</button>
                 </form>
+            {% endif %}
+            
+            {% if brands is not empty %}
+                <h4>List of brands:</h4>
+                    {% for brand in brands %}
+                        <div class="brand">
+                        <li><h5><strong>{{ brand.getName }}</a></strong></h5></li>
+                        </div>
+                        <form action="/delete_brand/{{ brand.getId }}" method="post">
+                        <input name="_method" type="hidden" value="delete">
+                        <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
+                        <input name="brand_id" type="hidden" value="{{ brand.getId }}">
+                        <button type="submit" class="btn btn-danger btn-xs">Remove Brand</button>
+                        </form>
+                    {% endfor %}
+            {% else %}
+                <h3>There are no brands for {{ store.getName }} store yet!</h3>
             {% endif %}
             
         </div>
