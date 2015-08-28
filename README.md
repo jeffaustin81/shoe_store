@@ -6,7 +6,7 @@
 
 ## Description
 
-_This application allows users to add stores and add the brands that the stores carry. User can also edit and delete stores, delete brands associated with a specific store. Delete function also available for brands alone. No edit functionality on brands._
+_This application allows users to add stores and add the brands that the stores carry. User can also edit and delete stores, delete brands associated with a specific store. No edit functionality on brands._
 
 ## Setup
 
