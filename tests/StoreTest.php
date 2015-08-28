@@ -45,6 +45,19 @@
             $this->assertEquals("Foot Action", $result);
         }
         
+        function test_updateName()
+        {
+            $name = "Foot Locker";
+            $test_store = new Store($name, $id);
+            $test_store->save();
+            
+            $new_name = "Foot Action";
+
+            $test_store->updateName($new_name);
+
+            $this->assertEquals("Foot Action", $test_store->getName());
+        }  
+        
         function test_getId()
         {
             $name = "Foot Locker";
@@ -65,6 +78,21 @@
             $result = Store::getAll();
 
             $this->assertEquals($test_store, $result[0]);
+        }
+        
+        function test_delete()
+        {
+            $name = "Foot Locker";
+            $test_store = new Store($name, $id);
+            $test_store->save();
+            
+            $name2 = "Foot Action";
+            $test_store2 = new Store($name2, $id);
+            $test_store2->save();
+            
+            $test_store->delete();
+
+            $this->assertEquals([$test_store2], Store::getAll());
         }
         
         function test_getAll()
@@ -113,7 +141,7 @@
             $this->assertEquals($test_store, $result);
         }
         
-        function test_AddBrand()
+        function test_addBrand()
         {
             $name = "Foot Action";
             $test_store = new Store($name, $id);
@@ -193,19 +221,6 @@
 
             $this->assertEquals([], $result);
         }
-        
-        function test_updateName()
-        {
-            $name = "Foot Locker";
-            $test_store = new Store($name, $id);
-            $test_store->save();
-            
-            $new_name = "Foot Action";
-
-            $test_store->updateName($new_name);
-
-            $this->assertEquals("Foot Action", $test_store->getName());
-        }                
-        
+                      
     }
 ?>
