@@ -106,7 +106,10 @@
             $test_store2->save();
 
             $result = Store::getAll();
-
+            
+            // Be careful to make sure that your returns 
+            // are in alphabetical order as the Store::getAll()
+            // method returns input in alphabetical order
             $this->assertEquals([$test_store2, $test_store], $result);
         }
         
@@ -173,6 +176,9 @@
             $test_store->addBrand($test_brand->getId());
             $test_store->addBrand($test_brand2->getId());
 
+            // Be careful to make sure that your returns 
+            // are in alphabetical order as the getBrands
+            // method returns input in alphabetical order
             $this->assertEquals($test_store->getBrands(), [$test_brand2, $test_brand]);
         }
         
@@ -195,7 +201,7 @@
 
             $test_store->deleteBrand($test_brand->getId());
             $result = $test_store->getBrands();
-
+            
             $this->assertEquals([$test_brand2], $result);
         }
         
