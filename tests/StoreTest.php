@@ -169,6 +169,19 @@
             $result = $test_store->getBrands();
 
             $this->assertEquals([$test_brand2], $result);
+        }
+        
+        function test_updateName()
+        {
+            $name = "Foot Locker";
+            $test_store = new Store($name, $id);
+            $test_store->save();
+            
+            $new_name = "Foot Action";
+
+            $test_store->updateName($new_name);
+
+            $this->assertEquals("Foot Action", $test_store->getName());
         }                
         
     }
