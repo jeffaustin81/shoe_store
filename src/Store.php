@@ -20,6 +20,11 @@
         {
             $this->name = $new_name;
         }
+        
+        function getId()
+        {
+            return $this->id;
+        }
 
 	}
 ?>

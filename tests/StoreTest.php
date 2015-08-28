@@ -43,8 +43,17 @@
             $result = $test_store->getName();
             
             $this->assertEquals("Foot Action", $result);
-            
-            
+        }
+        
+        function test_getId()
+        {
+            $name = "Foot Locker";
+            $id = 1;
+            $test_store = new Store($name, $id);
+
+            $result = $test_store->getId();
+
+            $this->assertEquals(true, is_numeric($result));
         }
         
     }
