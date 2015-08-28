@@ -15,7 +15,7 @@
                         <div class="brand">
                         <li><h5><strong>{{ brand.getName }}</a></strong></h5></li>
                         </div>
-                        <form action="/delete_brand/{{ brand.getId }}" method="post" class="inline">
+                        <form action="/delete_brand/{{ brand.getId }}" method="post">
                         <input name="_method" type="hidden" value="delete">
                         <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
                         <input name="brand_id" type="hidden" value="{{ brand.getId }}">
