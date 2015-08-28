@@ -19,6 +19,7 @@
     
 	$app['debug'] = true;
     
+    // Database setup
 	$server = 'mysql:host=localhost:8889;dbname=shoes';
     $username = 'root';
     $password = 'root';
@@ -50,6 +51,7 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $store->getBrands(), 'store_update' => true, 'form_check' => false));
     });
     
+    // This route updates a specific store
     $app->patch("/update_store", function() use ($app) {
         $name = $_POST['name'];
         $store_id = $_POST['store_id'];
@@ -73,6 +75,7 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $store->getBrands(), 'form_check' => false, 'store_update' => false));
     });
     
+    // This route deletes specific store
     $app->delete("/delete_store/{id}", function($id) use ($app) {
         
         $id = $_POST['store_id'];
@@ -100,6 +103,7 @@
         return $app['twig']->render('store.html.twig', array('store' => $store, 'brands' => $store->getBrands(), 'form_check' => false, 'store_update' => false));
     });
     
+    // This route deletes a specific brand from a store
     $app->delete("/delete_brand/{id}", function($id) use ($app) {
         
         $id = $_POST['brand_id'];
