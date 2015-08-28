@@ -20,7 +20,7 @@
         protected function tearDown()
         {
             Store::deleteAll();
-            // Brand::deleteAll();
+            Brand::deleteAll();
         }
 
         function test_getName()
@@ -96,6 +96,56 @@
             $result = Store::getAll();
 
             $this->assertEquals([], $result);
+        }
+        
+        function test_find()
+        {
+            $name = "Foot Locker";
+            $test_store = new Store($name);
+            $test_store->save();
+            
+            $name2 = "Foot Action";
+            $test_store2 = new Store($name2);
+            $test_store2->save();
+
+            $result = Store::find($test_store->getId());
+
+            $this->assertEquals($test_store, $result);
+        }
+        
+        function test_AddBrand()
+        {
+            $name = "Foot Action";
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $name = "Nike";
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $test_store->addBrand($test_brand->getId());
+
+            $this->assertEquals($test_store->getBrands(), [$test_brand]);
+        }
+        
+        function test_getBrands()
+        {
+            $name = "Nike";
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $name2 = "Adidas";
+            $test_brand2 = new Brand($name2, $id);
+            $test_brand2->save();
+
+            $name = "Foot Locker";
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $test_store->addBrand($test_brand->getId());
+            $test_store->addBrand($test_brand2->getId());
+
+            $this->assertEquals($test_store->getBrands(), [$test_brand, $test_brand2]);
         }                
         
     }
