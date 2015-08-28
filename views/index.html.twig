@@ -8,11 +8,11 @@
         <h1>Welcome to the Shoe Stores Database</h1>
 
         {% if stores is not empty %}
-            <h3>List of all store types:</h3>
+            <h3>List of all stores:</h3>
             <h6>Click on a store to see all the brands carried by that store</h6>
             <ul>
                 {% for store in stores %}
-                    <li><h4><strong><a href="/stores/{{ store.getId }}">{{ store.getType }}</a></strong></h4></li>
+                    <li><h4><strong><a href="/stores/{{ store.getId }}">{{ store.getName }}</a></strong></h4></li>
                 {% endfor %}
             </ul>
         {% else %}
@@ -20,7 +20,7 @@
         {% endif %}
 
         <form action="/form_store">
-            <button type="submit" class="btn btn-info">Add new store</button>
+            <button type="submit" class="btn btn-info">Add Store</button>
         </form>
 
         {% if form_check == true %}
@@ -29,11 +29,11 @@
                     <label for="type">Enter a new store name</label>
                     <input id="type" name="type" class="form-control" type="text" placeholder="Store Name" required>
                 </div>
-                <button type="submit" class="btn btn-success">Add store</button>
+                <button type="submit" class="btn btn-success">Add Store</button>
             </form>
         {% endif %}
         <form action="/delete_stores" method="post">
-            <button type="submit" class="btn btn-danger">Delete all stores</button>
+            <button type="submit" class="btn btn-danger">Delete All Stores</button>
         </form>
     </div>
 </body>

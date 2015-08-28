@@ -2,6 +2,7 @@
     <head>
         <title>Shoe Stores</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles.css">
     </head>
     <body>
         <div class="container">
@@ -11,16 +12,43 @@
             {% if brands is not empty %}
                 <h4>List of brands:</h4>
                     {% for brand in brands %}
-                        <li><h5><strong><a href="/brands/{{ brand.getId }}">{{ brand.getName }}</a></strong></h5></li>
+                        <div class="brand">
+                        <li><h5><strong>{{ brand.getName }}</a></strong></h5><br></li>
+                        </div>
+                        <form action="/delete_brand/{{ brand.getId }}" method="post" class="inline">
+                        <input name="_method" type="hidden" value="delete">
+                        <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
+                        <input name="brand_id" type="hidden" value="{{ brand.getId }}">
+                        <button type="submit" class="btn btn-danger btn-xs">Remove Brand</button>
+                        </form>
                     {% endfor %}
             {% else %}
                 <h3>There are no brands for {{ store.getName }} store yet!</h3>
+            {% endif %}
+            
+            <form action="/form_store_update">
+                    <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+                    <button type="submit" class="btn btn-info">Change Store Name</button>
+            </form>
+
+            {% if store_update != false %}
+                <form action="/update_store" method="post">
+                    <input name="_method" type="hidden" value="patch">
+                    <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
+
+                    <h4>Edit Store Name</h4>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" class="form-control" type="text" placeholder="Store Name" value="{{ store.getName }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
             {% endif %}
 
             <form action="/form_brand">
                 <form action="/form_store">
                     <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
-                    <button type="submit" class="btn btn-info">Add new brand</button>
+                    <button type="submit" class="btn btn-info">Add New Brand</button>
                 </form>
 
             {% if form_check == true %}
