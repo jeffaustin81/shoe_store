@@ -173,7 +173,7 @@
             $test_store->addBrand($test_brand->getId());
             $test_store->addBrand($test_brand2->getId());
 
-            $this->assertEquals($test_store->getBrands(), [$test_brand, $test_brand2]);
+            $this->assertEquals($test_store->getBrands(), [$test_brand2, $test_brand]);
         }
         
         function test_deleteBrand()
