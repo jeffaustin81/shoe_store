@@ -33,5 +33,19 @@
             $this->assertEquals($name, $result);
         }
        
+       function test_setName()
+        {
+            $name = "Foot Locker";
+            $test_store = new Store($name, $id);
+            
+            $test_store->setName("Foot Action");
+            
+            $result = $test_store->getName();
+            
+            $this->assertEquals("Foot Action", $result);
+            
+            
+        }
+        
     }
 ?>
