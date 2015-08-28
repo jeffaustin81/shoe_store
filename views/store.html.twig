@@ -13,7 +13,7 @@
                 <h4>List of brands:</h4>
                     {% for brand in brands %}
                         <div class="brand">
-                        <li><h5><strong>{{ brand.getName }}</a></strong></h5><br></li>
+                        <li><h5><strong>{{ brand.getName }}</a></strong></h5></li>
                         </div>
                         <form action="/delete_brand/{{ brand.getId }}" method="post" class="inline">
                         <input name="_method" type="hidden" value="delete">
