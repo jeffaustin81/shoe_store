@@ -71,7 +71,7 @@
             $returned_brands = $GLOBALS['DB']->query("SELECT brands.* FROM
                 brands JOIN stores_brands ON (brands.id = stores_brands.brand_id)
                 JOIN stores ON (stores.id = stores_brands.store_id)
-                WHERE stores.id = {$this->getId()}");
+                WHERE stores.id = {$this->getId()} ORDER BY name");
 
             $brands = array();
             foreach($returned_brands as $brand)
