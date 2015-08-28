@@ -171,6 +171,29 @@
             $this->assertEquals([$test_brand2], $result);
         }
         
+        function test_deleteAllbrands()
+        {
+            $name = "Foot Locker";
+            $test_store = new Store($name, $id);
+            $test_store->save();
+
+            $name = "Nike";
+            $test_brand = new Brand($name, $id);
+            $test_brand->save();
+
+            $name2 = "Adidas";
+            $test_brand2 = new Brand($name2, $id);
+            $test_brand2->save();
+
+            $test_store->addBrand($test_brand->getId());
+            $test_store->addBrand($test_brand2->getId());
+
+            $test_store->deleteAllBrands();
+            $result = $test_store->getBrands();
+
+            $this->assertEquals([], $result);
+        }
+        
         function test_updateName()
         {
             $name = "Foot Locker";

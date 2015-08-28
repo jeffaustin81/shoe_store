@@ -85,6 +85,11 @@
                 brand_id = {$brand_id} AND store_id = {$this->id}");
         }
         
+        function deleteAllBrands()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->id}");
+        }
+        
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stores;");
