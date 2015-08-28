@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Shoe Stores</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Shoe Stores Database</h1>
+
+        {% if stores is not empty %}
+            <h3>List of all store types:</h3>
+            <h6>Click on a store to see all the brands carried by that store</h6>
+            <ul>
+                {% for store in stores %}
+                    <li><h4><strong><a href="/stores/{{ store.getId }}">{{ store.getType }}</a></strong></h4></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>There are no stores entered yet!</h3>
+        {% endif %}
+
+        <form action="/form_store">
+            <button type="submit" class="btn btn-info">Add new store</button>
+        </form>
+
+        {% if form_check == true %}
+            <form action="/add_store" method="post">
+                <div class="form-group">
+                    <label for="type">Enter a new store name</label>
+                    <input id="type" name="type" class="form-control" type="text" placeholder="Store Name" required>
+                </div>
+                <button type="submit" class="btn btn-success">Add store</button>
+            </form>
+        {% endif %}
+        <form action="/delete_stores" method="post">
+            <button type="submit" class="btn btn-danger">Delete all stores</button>
+        </form>
+    </div>
+</body>
+</html>

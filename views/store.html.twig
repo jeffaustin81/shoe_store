@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Shoe Stores</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <h1>{{ store.getName }}</h1>
+
+            {% if brands is not empty %}
+                <h4>List of brands:</h4>
+                    {% for brand in brands %}
+                        <li><h5><strong><a href="/brands/{{ brand.getId }}">{{ brand.getName }}</a></strong></h5></li>
+                    {% endfor %}
+            {% else %}
+                <h3>There are no brands for {{ store.getName }} store yet!</h3>
+            {% endif %}
+
+            <form action="/form_brand">
+                <form action="/form_store">
+                    <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
+                    <button type="submit" class="btn btn-info">Add new brand</button>
+                </form>
+
+            {% if form_check == true %}
+                <form action="/add_brand" method="post">
+                    <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
+                    <h4>Enter a Brand</h4>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" class="form-control" type="text" placeholder="Brand Name" required>
+                    </div>
+                    <button type="submit" class="btn btn-success">Add Brand</button>
+                </form>
+            {% endif %}
+            <form action="/">
+                <button type="submit" class="btn btn-primary">Home</button>
+            </form>
+        </div>
+    </body>
+</html>
