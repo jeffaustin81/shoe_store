@@ -26,9 +26,18 @@
                 <h3>There are no brands for {{ store.getName }} store yet!</h3>
             {% endif %}
             
-            <form action="/form_store_update">
+            <form action="/form_store_update" class="action_buttons">
                     <input id="store_id" name="store_id" type="hidden" value="{{ store.getId }}">
                     <button type="submit" class="btn btn-info">Change Store Name</button>
+            </form>
+            
+            <form action="/form_brand" class="action_buttons">
+                    <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
+                    <button type="submit" class="btn btn-info">Add New Brand</button>
+                </form>
+                
+            <form action="/" class="action_buttons">
+                <button type="submit" class="btn btn-primary">Home</button>
             </form>
 
             {% if store_update != false %}
@@ -43,13 +52,7 @@
                     </div>
                     <button type="submit" class="btn btn-success">Submit</button>
                 </form>
-            {% endif %}
-
-            <form action="/form_brand">
-                <form action="/form_store">
-                    <input id="store_id" name="store_id" type="hidden" value="{{ store.getId() }}">
-                    <button type="submit" class="btn btn-info">Add New Brand</button>
-                </form>
+            {% endif %}            
 
             {% if form_check == true %}
                 <form action="/add_brand" method="post">
@@ -62,9 +65,7 @@
                     <button type="submit" class="btn btn-success">Add Brand</button>
                 </form>
             {% endif %}
-            <form action="/">
-                <button type="submit" class="btn btn-primary">Home</button>
-            </form>
+            
         </div>
     </body>
 </html>
