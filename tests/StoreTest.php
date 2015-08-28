@@ -96,9 +96,7 @@
             $result = Store::getAll();
 
             $this->assertEquals([], $result);
-        }
-        
-        
+        }                
         
     }
 ?>
